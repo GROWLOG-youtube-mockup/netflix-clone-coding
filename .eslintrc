@@ -1,0 +1,77 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true
+  },
+  "ignorePatterns": ["node_modules/", ".pnp.cjs", ".pnp.loader.cjs", "public/"],
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "plugins": ["react", "simple-import-sort", "unused-imports", "prettier"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]],
+        "extensions": [".js", ".jsx", ".json"]
+      }
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "no-console": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "simple-import-sort/exports": "error",
+    "unused-imports/no-unused-imports": "error",
+    "simple-import-sort/imports": "error",
+    "import/prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off", // ✅ React 17+ 이상에서는 필수 아님
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "always",
+        "jsx": "always"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling", "index"],
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}

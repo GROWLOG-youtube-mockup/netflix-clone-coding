@@ -1,0 +1,25 @@
+!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+if ! echo "$COMMIT_MSG" | grep -qE "^(feat|fix|docs|style|refactor|test|chore): .+"; then
+  echo ""
+  echo "🚫 Invalid commit message format!"
+  echo ""
+  echo "💡 Allowed formats:"
+  echo "  feat:     새로운 기능 추가"
+  echo "  fix:      버그 수정"
+  echo "  docs:     문서 수정"
+  echo "  style:    css style"
+  echo "  refactor: 코드 리팩토링"
+  echo "  test:     테스트 코드 추가"
+  echo "  chore:    빌드/설정 관련 변경"
+  echo "  lint:     lint 설정에 맞게 수정"
+  echo ""
+  echo "💁‍♀️ 예시: feat: 유튜브 검색 기능 추가"
+  exit 1
+fi
+
+echo "✅ Valid commit message. Thanks!"
