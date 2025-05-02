@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "lint-fix": "eslint \"**/*.{js,jsx}\" --fix",
     "lint": "eslint . --ext .js,.jsx",
+    "format": "prettier --write .",
     "prepare": "husky"
   },
   "dependencies": {
