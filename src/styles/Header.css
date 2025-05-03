@@ -1,0 +1,64 @@
+:root {
+  --headerHeight: 30px;
+  --iconsHeight: 20px;
+  --iconsMargin: 10px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: var(--headerHeight);
+  z-index: 1;
+  padding: 30px 60px;
+}
+
+.header-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  width: 20%;
+  height: var(--headerHeight);
+}
+
+.header-left-logo {
+  height: var(--headerHeight);
+}
+
+.header-category {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 60%;
+  height: var(--headerHeight);
+}
+
+.header-right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  width: 20%;
+  height: var(--headerHeight);
+}
+
+.header-right-search-icon {
+  margin: var(--iconsMargin);
+  height: var(--iconsHeight);
+}
+
+.header-right-notification {
+  margin: var(--iconsMargin);
+  height: var(--iconsHeight);
+}
+
+.header-right-profile {
+  margin: var(--iconsMargin);
+  height: 30px;
+  border-radius: 3px;
+}
