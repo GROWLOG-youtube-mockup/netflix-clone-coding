@@ -15,10 +15,27 @@ function CardsSlider({ title, fetchUrl, id }) {
     fetchMovieData();
   });
 
+  function handleClickArrow(dir) {
+    const handledRow = document.getElementById(id);
+    handledRow.scrollLeft =
+      dir === 'left'
+        ? handledRow.scrollLeft - (window.innerWidth - 80)
+        : handledRow.scrollLeft + (window.innerWidth - 80);
+  }
+
   return (
     <section className="cards-row">
       <h2 className="cards-row-title">{title}</h2>
       <div className="slider-container">
+        <button
+          className="slider-arrow arrow-left"
+          onClick={() => {
+            handleClickArrow('left');
+          }}
+          type="button"
+        >
+          {'<'}
+        </button>
         <div className="slider-posters" id={id}>
           {movies.map((movie) => (
             <div key={movie.id} className="slider-poster">
@@ -29,6 +46,15 @@ function CardsSlider({ title, fetchUrl, id }) {
             </div>
           ))}
         </div>
+        <button
+          className="slider-arrow arrow-right"
+          onClick={() => {
+            handleClickArrow('right');
+          }}
+          type="button"
+        >
+          {'>'}
+        </button>
       </div>
     </section>
   );

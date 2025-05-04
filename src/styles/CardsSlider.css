@@ -13,6 +13,40 @@
   position: relative;
 }
 
+.slider-arrow {
+  position: absolute;
+  background-color: rgba(20, 20, 20, 0.5);
+  color: white;
+  border: none;
+  /* font-size: 2.5vw; */
+  font-size: var(--font-size-xl);
+  width: var(--card-row-padding-y);
+  height: 100%;
+  border-radius: 0.2vw;
+  transition: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+.slider-arrow.arrow-left {
+  top: 0;
+  left: -4%;
+}
+.slider-arrow.arrow-right {
+  top: 0;
+  right: 0;
+}
+.slider-container:hover .slider-arrow {
+  visibility: visible;
+  transition: 100ms all ease-in-out;
+}
+.arrow-left:hover,
+.arrow-right:hover {
+  font-size: var(--font-size-title);
+}
+
 .slider-posters {
   display: flex;
   flex-direction: row;
