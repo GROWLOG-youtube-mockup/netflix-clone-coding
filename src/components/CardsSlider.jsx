@@ -1,11 +1,12 @@
 import '../styles/CardsSlider.css';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import api from '../api/api.js';
 
-function CardsSlider({ title, fetchUrl, id }) {
+function CardsSlider({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
+  const sliderRef = useRef(null);
   async function fetchMovieData() {
     const request = await api.get(fetchUrl);
     setMovies(request.data.results);
@@ -16,11 +17,11 @@ function CardsSlider({ title, fetchUrl, id }) {
   });
 
   function handleClickArrow(dir) {
-    const handledRow = document.getElementById(id);
-    handledRow.scrollLeft =
+    const slider = sliderRef.current;
+    slider.scrollLeft =
       dir === 'left'
-        ? handledRow.scrollLeft - (window.innerWidth - 80)
-        : handledRow.scrollLeft + (window.innerWidth - 80);
+        ? slider.scrollLeft - (window.innerWidth - 80)
+        : slider.scrollLeft + (window.innerWidth - 80);
   }
 
   return (
@@ -36,9 +37,9 @@ function CardsSlider({ title, fetchUrl, id }) {
         >
           {'<'}
         </button>
-        <div className="slider-posters" id={id}>
-          {movies.map((movie) => (
-            <div key={movie.id} className="slider-poster">
+        <div className="slider-posters" ref={sliderRef}>
+          {movies.map((movie, index) => (
+            <div key={movie.id} className={`slider-poster poster-${index}`}>
               <img
                 src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                 alt={movie.title}
