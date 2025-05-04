@@ -1,0 +1,31 @@
+.cards-row {
+  padding-left: var(--card-row-padding-y);
+}
+.cards-row-title {
+  line-height: 1.3;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  margin-bottom: 0.5em;
+  min-width: 6em;
+}
+.slider-container {
+  height: 20vw;
+  position: relative;
+}
+
+.slider-posters {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5vw;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+.slider-posters::-webkit-scrollbar {
+  display: none;
+}
+.slider-poster img {
+  border-radius: 0.2vw;
+  height: 100%;
+}
