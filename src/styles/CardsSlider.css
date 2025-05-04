@@ -1,12 +1,10 @@
-.cards-row {
-  padding-left: var(--card-row-padding-y);
-}
 .cards-row-title {
   line-height: 1.3;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   margin-bottom: 0.5em;
   min-width: 6em;
+  padding-left: var(--card-row-padding-y);
 }
 .slider-container {
   height: 20vw;
@@ -32,7 +30,7 @@
 }
 .slider-arrow.arrow-left {
   top: 0;
-  left: -4%;
+  left: 0;
 }
 .slider-arrow.arrow-right {
   top: 0;
@@ -55,6 +53,7 @@
   overflow-x: scroll;
   scroll-behavior: smooth;
   height: 100%;
+  padding-left: var(--card-row-padding-y);
 }
 .slider-posters::-webkit-scrollbar {
   display: none;
