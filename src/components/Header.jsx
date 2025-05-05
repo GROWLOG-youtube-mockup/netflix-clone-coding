@@ -60,7 +60,7 @@ function Header() {
           <div className="sub-header-genre-details">
             <span className="sub-header-genre-title">Sub header Title</span>
             <button type="button" className="sub-header-genre-label">
-              시리즈
+              장르
               <img
                 className="sub-header-genre-label-triangleDown"
                 alt="More option"

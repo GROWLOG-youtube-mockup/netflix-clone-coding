@@ -34,6 +34,8 @@
   z-index: 1;
   padding-left: 30px;
   padding-right: 30px;
+  transition-timing-function: ease-in;
+  transition: all 0.5s;
 }
 
 .main-header_black {
