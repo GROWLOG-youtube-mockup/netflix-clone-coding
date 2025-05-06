@@ -1,4 +1,3 @@
-/* src/styles/Header.css */
 @font-face {
   font-family: 'Netflix Sans';
   font-weight: bold;
@@ -16,10 +15,12 @@
   --iconsMargin: 10px;
   --sub-header-label-height: 20px;
 }
+
 .header-contents {
   display: flex;
   flex-direction: column;
 }
+
 .main-header {
   position: fixed;
   top: 0;
@@ -37,20 +38,21 @@
 .main-header_black {
   background-color: #141414;
 }
-.main-header-left,
-.main-header-category,
-.main-header-right {
+
+.main-header-left {
   display: flex;
   align-items: center;
   height: var(--inHeaderHeight);
-}
-.main-header-left {
   width: 10%;
 }
 .main-header-left-logo {
   height: var(--inHeaderHeight);
 }
+
 .main-header-category {
+  display: flex;
+  align-items: center;
+  height: var(--inHeaderHeight);
   width: 80%;
 }
 .main-header-category-button {
@@ -65,25 +67,36 @@
 .main-header-category-button.active {
   font-weight: 700;
 }
+
 .main-header-right {
-  width: 10%;
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
+  height: var(--inHeaderHeight);
+  width: 10%;
 }
-.main-header-search-button,
+.main-header-search-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 var(--iconsMargin);
+  height: var(--iconsHeight);
+}
 .main-header-right-search-icon,
 .main-header-right-notification,
 .main-header-right-profile,
 .main-header-right-triangleDown {
-  margin: 0 var(--iconsMargin);
   background: transparent;
   border: none;
   cursor: pointer;
+  margin: 0 var(--iconsMargin);
   height: var(--iconsHeight);
 }
 .main-header-right-profile {
   height: 30px;
   border-radius: 3px;
 }
+
 .main-header-search-container {
   display: flex;
   align-items: center;
@@ -108,6 +121,7 @@
 .main-header-search-input::placeholder {
   color: #aaa;
 }
+
 .sub-header {
   position: fixed;
   top: var(--headerHeight);
@@ -125,6 +139,7 @@
 .sub-header_black {
   background-color: #141414;
 }
+
 .sub-header-genre-details {
   display: flex;
   align-items: center;
@@ -141,9 +156,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
   width: 80px;
   height: var(--sub-header-label-height);
+  padding: 0 10px;
   background: #141414;
   border: 1px solid #fff;
   color: #fff;
@@ -157,6 +172,7 @@
 .sub-header-genre-label-triangleDown {
   height: 10px;
 }
+
 /* 드롭다운 (버튼 내부 요소) */
 .genre-options-dropdown {
   position: absolute;
@@ -190,11 +206,22 @@
 .genre-option-button.active {
   text-decoration: underline;
 }
+
 .sub-header-show-video-list-type {
   display: flex;
   align-items: center;
 }
-.sub-header-show-video-row,
+.sub-header-show-video-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid #fff;
+  margin-left: 8px;
+  cursor: pointer;
+}
 .sub-header-show-video-grid {
   display: flex;
   align-items: center;
@@ -206,11 +233,13 @@
   margin-left: 8px;
   cursor: pointer;
 }
-.row-photo,
+.row-photo {
+  height: 15px;
+}
 .grid-photo {
   height: 15px;
 }
-/* Ensure sub-header turns black on scroll */
+
 .sub-header.main-header_black {
   background-color: #141414;
 }
