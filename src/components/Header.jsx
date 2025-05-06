@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import '../styles/Header.css';
 
 import React, { useEffect, useState, useRef } from 'react';
@@ -26,7 +25,7 @@ function Header() {
   const [showSearch, setShowSearch] = useState(false);
   const searchInputRef = useRef(null);
 
-  // 헤더 배경 토글
+  // 헤더 배경 토글 (스와이프 시 및 카테고리에 따라 항상 흑색)
   useEffect(() => {
     const handleScroll = () => setShow(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -35,10 +34,13 @@ function Header() {
 
   // 검색창 포커스
   useEffect(() => {
-    if (showSearch) {
-      searchInputRef.current?.focus();
-    }
+    if (showSearch) searchInputRef.current?.focus();
   }, [showSearch]);
+
+  // 카테고리 및 서브키 변경 시 드롭다운 닫기
+  useEffect(() => {
+    setDropdownOpen(false);
+  }, [selectedCategory, subKey]);
 
   const onCategoryClick = (key) => {
     setDropdownOpen(false);
@@ -51,7 +53,9 @@ function Header() {
 
   return (
     <div className="header-contents">
-      <header className={`main-header ${show ? 'main-header_black' : ''}`}>
+      <header
+        className={`main-header ${show || selectedCategory !== 'home' ? 'main-header_black' : ''}`}
+      >
         <div className="main-header-left">
           <Link to="/">
             <img className="main-header-left-logo" alt="logo" src={logo} />
@@ -117,7 +121,6 @@ function Header() {
                         className={`genre-option-button ${sub.key === subKey ? 'active' : ''}`}
                         onClick={() => {
                           navigate(`/genre/${selectedCategory}?sub=${sub.key}`);
-                          setDropdownOpen(false);
                         }}
                       >
                         {sub.title}
