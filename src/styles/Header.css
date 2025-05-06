@@ -82,6 +82,41 @@
   height: var(--inHeaderHeight);
 }
 
+.main-header-search-button {
+  margin: 10px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+
+.main-header-search-container {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  margin-left: 16px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background: #141414;
+}
+
+.search-input-icon {
+  height: var(--iconsHeight);
+  margin-right: 8px;
+}
+
+.main-header-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.main-header-search-input::placeholder {
+  color: #aaa;
+}
+
 .main-header-right-search-icon {
   margin: var(--iconsMargin);
   height: var(--iconsHeight);

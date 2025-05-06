@@ -1,7 +1,7 @@
 // src/components/Header.jsx
 import '../styles/Header.css';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import gridToggle from '../assets/grid-toggle.svg';
@@ -25,6 +25,8 @@ function Header() {
 
   const [show, setShow] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const searchInputRef = useRef(null);
 
   // 스크롤 시 헤더 배경 변경
   useEffect(() => {
@@ -34,6 +36,13 @@ function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // 검색창 열릴 때 포커스 이동
+  useEffect(() => {
+    if (showSearch) {
+      searchInputRef.current?.focus();
+    }
+  }, [showSearch]);
 
   const onCategoryClick = (key) => {
     setDropdownOpen(false);
@@ -70,12 +79,37 @@ function Header() {
         </nav>
 
         <div className="main-header-right">
-          <img className="main-header-right-search-icon" alt="search" src={searchIcon} />
+          {/* 검색 아이콘 버튼 (검색창이 닫혀 있을 때만 표시) */}
+          {!showSearch && (
+            <button
+              type="button"
+              className="main-header-search-button"
+              onClick={() => setShowSearch(true)}
+            >
+              <img className="main-header-right-search-icon" alt="search" src={searchIcon} />
+            </button>
+          )}
+
+          {/* 검색창 (검색 버튼이 사라지고, 검색창이 열릴 때 표시) */}
+          {showSearch && (
+            <div className="main-header-search-container">
+              <img className="search-input-icon" alt="search" src={searchIcon} />
+              <input
+                ref={searchInputRef}
+                type="text"
+                className="main-header-search-input"
+                placeholder="제목, 사람, 장르"
+                onBlur={() => setShowSearch(false)}
+              />
+            </div>
+          )}
+
           <img className="main-header-right-notification" alt="notification" src={notification} />
           <img className="main-header-right-profile" alt="profile" src={profile} />
           <img className="main-header-right-triangleDown" alt="dropdown" src={triangleDown} />
         </div>
       </header>
+
       {selectedCategory !== 'home' && (
         <div
           className={`sub-header ${show && selectedCategory !== 'home' ? 'main-header_black' : ''}`}
