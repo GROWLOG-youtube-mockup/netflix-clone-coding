@@ -1,6 +1,8 @@
+// src/components/Hero.jsx
 import '../styles/Hero.css';
 
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import api from '../api/api.js';
 import requests from '../api/requests.js';
@@ -8,60 +10,73 @@ import info from '../assets/more-info.svg';
 import play from '../assets/play.svg';
 
 function Hero() {
-  const [movie, setMovie] = useState();
+  const { genreId } = useParams();
 
-  // 히어로 섹션 정보 불러오기
+  const endpointMap = {
+    home: requests.nowPlaying,
+    series: requests.netflixOriginals,
+    movies: requests.topRated
+  };
+  const fetchEndpoint = endpointMap[genreId || 'home'];
+
+  const [movie, setMovie] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 현재 진행중인 영화 정보 받아오기
-        const request = await api.get(requests.nowPlaying);
+        // 선택된 카테고리의 리스트를 불러오기
+        const listResponse = await api.get(fetchEndpoint);
+        const { results } = listResponse.data;
 
-        // ID는 렌덤 값으로
-        const movieId =
-          request.data.results[Math.floor(Math.random() * request.data.results.length)].id;
+        // 랜덤으로 하나 선택
+        const randomItem = results[Math.floor(Math.random() * results.length)];
 
-        // 상세 정보 받아오기
-        const { data: movieDetail } = await api.get(`movie/${movieId}`, {
+        // 상세 정보(비디오 포함) 요청
+        const detailResponse = await api.get(`movie/${randomItem.id}`, {
           params: { append_to_response: 'videos' }
         });
-        console.log(movieDetail);
 
-        setMovie(movieDetail);
+        setMovie(detailResponse.data);
       } catch (error) {
-        console.log('히어로 섹션을 불러오지 못했습니다.');
+        console.error('히어로 섹션 로드 실패:', error);
       }
     };
+
     fetchData();
-  }, []);
+  }, [fetchEndpoint]);
 
   // 너무 긴 상세 설명 길이 제한 함수
-  const cut = (str, n) => {
-    return str?.length > n ? `${str.substr(0, n - 1)}...` : str;
-  };
+  const truncate = (str, length) =>
+    str && str.length > length ? `${str.substring(0, length - 1)}…` : str;
 
   return (
     <div className="Hero-banner">
-      <img
-        className="Hero-banner-img"
-        src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
-        alt="Hero-banner-image"
-      />
-      <div className="Hero-banner-contents">
-        <h1 className="Hero-banner-title">
-          {movie?.title || movie?.name || movie?.original.title}
-        </h1>
-        <h3 className="Hero-banner-description">{cut(movie?.overview, 100)}</h3>
-        <div className="Hero-banner-button">
-          <button type="button" className="Hero_banner-play-button">
-            <img className="play-img" alt="Play" src={play} /> 재생
-          </button>
-          <button type="button" className="Hero_banner-more-info-button">
-            <img className="more-info-img" alt="More Information" src={info} /> 상세정보
-          </button>
-        </div>
-      </div>
-      <div className="Hero-banner-fade" />
+      {movie && (
+        <>
+          <img
+            className="Hero-banner-img"
+            src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+            alt={movie.title || movie.name || 'Hero banner'}
+          />
+
+          <div className="Hero-banner-contents">
+            <h1 className="Hero-banner-title">
+              {movie.title || movie.name || movie.original_title}
+            </h1>
+            <h3 className="Hero-banner-description">{truncate(movie.overview, 100)}</h3>
+            <div className="Hero-banner-button">
+              <button type="button" className="Hero_banner-play-button">
+                <img className="play-img" alt="Play" src={play} /> 재생
+              </button>
+              <button type="button" className="Hero_banner-more-info-button">
+                <img className="more-info-img" alt="Info" src={info} /> 상세정보
+              </button>
+            </div>
+          </div>
+
+          <div className="Hero-banner-fade" />
+        </>
+      )}
     </div>
   );
 }
