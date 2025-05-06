@@ -169,7 +169,6 @@
   padding: 12px;
   background: rgba(20, 20, 20, 0.9);
   border: none;
-
   z-index: 200;
 }
 .genre-option-item {
@@ -210,4 +209,8 @@
 .row-photo,
 .grid-photo {
   height: 15px;
+}
+/* Ensure sub-header turns black on scroll */
+.sub-header.main-header_black {
+  background-color: #141414;
 }
