@@ -2,50 +2,62 @@
 import '../styles/Hero.css';
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import api from '../api/api.js';
+import { getCategoryByKey } from '../api/categoryConfig.js';
 import requests from '../api/requests.js';
 import info from '../assets/more-info.svg';
 import play from '../assets/play.svg';
 
 function Hero() {
   const { genreId } = useParams();
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+  const subKey = searchParams.get('sub');
 
-  const endpointMap = {
-    home: requests.nowPlaying,
-    series: requests.netflixOriginals,
-    movies: requests.topRated
-  };
-  const fetchEndpoint = endpointMap[genreId || 'home'];
+  // 메인 카테고리와 서브카테고리 설정
+  const mainKey = genreId || 'home';
+  const category = getCategoryByKey(mainKey);
+
+  // 기본 fetchEndpoint는 category.requestKey
+  let fetchEndpoint = category?.requestKey ? requests[category.requestKey] : requests.nowPlaying;
+
+  // 서브카테고리 선택 시 해당 requestKey로 override
+  if (category?.subGenres && subKey) {
+    const sub = category.subGenres.find((s) => s.key === subKey);
+    if (sub) {
+      fetchEndpoint = requests[sub.requestKey];
+    }
+  }
+
+  // 디버그: 현재 사용 중인 fetchEndpoint 확인
+  console.log('Hero fetchEndpoint:', fetchEndpoint);
 
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 선택된 카테고리의 리스트를 불러오기
         const listResponse = await api.get(fetchEndpoint);
         const { results } = listResponse.data;
-
-        // 랜덤으로 하나 선택
         const randomItem = results[Math.floor(Math.random() * results.length)];
 
-        // 상세 정보(비디오 포함) 요청
-        const detailResponse = await api.get(`movie/${randomItem.id}`, {
+        // TV 시리즈인지 영화인지 판단
+        const isTV = fetchEndpoint.includes('/tv') || randomItem.media_type === 'tv';
+        const detailEndpoint = isTV ? `tv/${randomItem.id}` : `movie/${randomItem.id}`;
+
+        const detailResponse = await api.get(detailEndpoint, {
           params: { append_to_response: 'videos' }
         });
-
         setMovie(detailResponse.data);
       } catch (error) {
         console.error('히어로 섹션 로드 실패:', error);
       }
     };
-
     fetchData();
   }, [fetchEndpoint]);
 
-  // 너무 긴 상세 설명 길이 제한 함수
   const truncate = (str, length) =>
     str && str.length > length ? `${str.substring(0, length - 1)}…` : str;
 
@@ -58,7 +70,6 @@ function Hero() {
             src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
             alt={movie.title || movie.name || 'Hero banner'}
           />
-
           <div className="Hero-banner-contents">
             <h1 className="Hero-banner-title">
               {movie.title || movie.name || movie.original_title}
@@ -73,7 +84,6 @@ function Hero() {
               </button>
             </div>
           </div>
-
           <div className="Hero-banner-fade" />
         </>
       )}
