@@ -61,6 +61,10 @@
   height: var(--inHeaderHeight);
 }
 
+.active {
+  font-weight: 700;
+}
+
 .main-header-category-button {
   margin: 10px;
   border: none;
