@@ -1,7 +1,8 @@
+// src/components/Header.jsx
 import '../styles/Header.css';
 
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 
 import { categoryConfig } from '../api/categoryConfig.js';
 import gridToggle from '../assets/grid-toggle.svg';
@@ -15,23 +16,24 @@ import triangleDown from '../assets/triangledown_106509.svg';
 function Header() {
   const navigate = useNavigate();
   const { genreId } = useParams();
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
   const selectedCategory = genreId || 'home';
+  const subKey = searchParams.get('sub');
 
   const [show, setShow] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const searchInputRef = useRef(null);
 
-  // 스크롤 시 헤더 배경 변경
+  // 헤더 배경 토글
   useEffect(() => {
-    const handleScroll = () => {
-      setShow(window.scrollY > 50);
-    };
+    const handleScroll = () => setShow(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 검색창 열릴 때 포커스 이동
+  // 검색창 포커스
   useEffect(() => {
     if (showSearch) {
       searchInputRef.current?.focus();
@@ -40,13 +42,10 @@ function Header() {
 
   const onCategoryClick = (key) => {
     setDropdownOpen(false);
-    if (key === 'home') navigate('/');
-    else navigate(`/genre/${key}`);
+    navigate(key === 'home' ? '/' : `/genre/${key}`);
   };
 
-  const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
-  };
+  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
   const current = categoryConfig.find((c) => c.key === selectedCategory);
 
@@ -73,7 +72,6 @@ function Header() {
         </nav>
 
         <div className="main-header-right">
-          {/* 검색 버튼 */}
           {!showSearch && (
             <button
               type="button"
@@ -84,7 +82,6 @@ function Header() {
             </button>
           )}
 
-          {/* 검색창 */}
           {showSearch && (
             <div className="main-header-search-container">
               <img className="search-input-icon" alt="search" src={searchIcon} />
@@ -104,19 +101,34 @@ function Header() {
         </div>
       </header>
 
-      {selectedCategory !== 'home' && (
-        <div
-          className={`sub-header ${show && selectedCategory !== 'home' ? 'main-header_black' : ''}`}
-        >
+      {selectedCategory !== 'home' && current && (
+        <div className={`sub-header ${show ? 'main-header_black' : ''}`}>
           <div className="sub-header-genre-details">
-            <span className="sub-header-genre-title">{current ? current.title : ''}</span>
+            <span className="sub-header-genre-title">{current.title}</span>
             <button type="button" className="sub-header-genre-label" onClick={toggleDropdown}>
-              장르 <img src={triangleDown} alt="▼" />
+              장르
+              <img src={triangleDown} alt="▼" className="sub-header-genre-label-triangleDown" />
+              {isDropdownOpen && (
+                <ul className="genre-options-dropdown">
+                  {current.subGenres.map((sub) => (
+                    <li key={sub.key} className="genre-option-item">
+                      <button
+                        type="button"
+                        className={`genre-option-button ${sub.key === subKey ? 'active' : ''}`}
+                        onClick={() => {
+                          navigate(`/genre/${selectedCategory}?sub=${sub.key}`);
+                          setDropdownOpen(false);
+                        }}
+                      >
+                        {sub.title}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </button>
-            {isDropdownOpen && (
-              <ul className="genre-options-dropdown">{/* 기존 옵션 렌더링 로직 유지 */}</ul>
-            )}
           </div>
+
           <div className="sub-header-show-video-list-type">
             <button type="button" className="sub-header-show-video-row">
               <img className="row-photo" alt="row" src={rowToggle} />
