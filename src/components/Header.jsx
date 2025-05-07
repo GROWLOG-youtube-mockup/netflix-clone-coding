@@ -38,9 +38,9 @@ function Header() {
 
   const handleSearch = (e) => {
     setTimeout(() => {
-      navigate(`/search?keyword=${e.target.value}`);
-    }, 1000);
-    // if (e.key === 'Enter') navigate(`/search?keyword=${e.target.value}`);
+      if (e.target.value === '') navigate('/');
+      else navigate(`/search?keyword=${e.target.value}`);
+    }, 500);
   };
 
   return (
