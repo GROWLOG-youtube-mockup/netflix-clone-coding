@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import requests from '../../api/requests.js';
 import CardsGridView from '../../components/CardsGridView.jsx';
+import Hero from '../../components/Hero.jsx';
 import PreviewModal from '../../components/PreviewModal/PreviewModal.jsx';
 
 function MainPage() {
@@ -20,6 +21,8 @@ function MainPage() {
       )}
 
       <CardsGridView fetchUrl={requests.trending} clickHandle={clickHandle} />
+      <Hero />
+      <CardsGridView fetchUrl={requests.trendingMovies} />
     </div>
   );
 }
