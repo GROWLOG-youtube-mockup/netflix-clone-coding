@@ -36,6 +36,13 @@ function Header() {
     navigate(key === 'home' ? '/' : `/genre/${key}`);
   };
 
+  const handleSearch = (e) => {
+    setTimeout(() => {
+      navigate(`/search?keyword=${e.target.value}`);
+    }, 1000);
+    // if (e.key === 'Enter') navigate(`/search?keyword=${e.target.value}`);
+  };
+
   return (
     <div className="header-contents">
       <header className={`main-header ${show ? 'main-header_black' : ''}`}>
@@ -78,6 +85,7 @@ function Header() {
                 className="main-header-search-input"
                 placeholder="제목, 사람, 장르"
                 onBlur={() => setShowSearch(false)}
+                onKeyDown={(e) => handleSearch(e)}
               />
             </div>
           )}
