@@ -36,8 +36,8 @@
     "no-console": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": "off",
     "unused-imports/no-unused-imports": "error",
-    "simple-import-sort/imports": "error",
     "import/prefer-default-export": "off",
     "react/react-in-jsx-scope": "off",
     "import/extensions": [
