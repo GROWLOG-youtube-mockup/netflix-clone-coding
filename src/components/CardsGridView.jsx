@@ -27,7 +27,7 @@ function CardsGridView({ fetchUrl, clickHandle }) {
             tabIndex={index}
             key={movie.id}
             className={`grid-poster poster-${index}`}
-            onClick={clickHandle}
+            onClick={() => clickHandle(movie)}
           >
             <img
               src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
