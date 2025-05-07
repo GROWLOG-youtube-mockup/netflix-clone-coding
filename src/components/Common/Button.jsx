@@ -1,16 +1,14 @@
 import React from 'react';
 
-export default function Button({
-  iconSrc,
-  altText = '',
-  children,
-  className = '',
-  onClick = () => {}
-}) {
+import '../../styles/Button.css';
+
+function Button({ children, className = '', ...props }) {
+  const baseClass = 'Hero_banner-button-common';
   return (
-    <button type="button" className={className} onClick={onClick}>
-      {iconSrc && <img className="play-img" alt={altText} src={iconSrc} />}
+    <button type="button" className={`${baseClass} ${className}`} {...props}>
       {children}
     </button>
   );
 }
+
+export default Button;
