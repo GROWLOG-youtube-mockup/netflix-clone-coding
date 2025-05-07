@@ -1,0 +1,3 @@
+.cards-grid-view-container {
+  margin-top: calc(var(--headerHeight) + 100px);
+}

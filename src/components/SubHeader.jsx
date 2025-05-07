@@ -8,7 +8,7 @@ import gridToggle from '../assets/grid-toggle.svg';
 import rowToggle from '../assets/row-toggle.svg';
 import triangleDown from '../assets/triangledown_106509.svg';
 
-function SubHeader() {
+function SubHeader({ setView }) {
   const navigate = useNavigate();
   const { genreId } = useParams();
   const { search } = useLocation();
@@ -63,10 +63,14 @@ function SubHeader() {
       </div>
 
       <div className="sub-header-show-video-list-type">
-        <button type="button" className="sub-header-show-video-row">
+        <button type="button" className="sub-header-show-video-row" onClick={() => setView('row')}>
           <img className="row-photo" alt="row" src={rowToggle} />
         </button>
-        <button type="button" className="sub-header-show-video-grid">
+        <button
+          type="button"
+          className="sub-header-show-video-grid"
+          onClick={() => setView('grid')}
+        >
           <img className="grid-photo" alt="grid" src={gridToggle} />
         </button>
       </div>
