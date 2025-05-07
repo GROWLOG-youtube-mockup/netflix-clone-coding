@@ -20,7 +20,7 @@ function CardsGridView({ fetchUrl, clickHandle }) {
   return (
     <section className="cards-grid">
       <div className="grid-container">
-        {movies.map((movie, index) => (
+        {movies?.map((movie, index) => (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <div
             role="button"
