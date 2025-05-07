@@ -16,7 +16,7 @@ function MainPage() {
   return (
     <div>
       {isModalOpen && selectedMovie && (
-        <PreviewModal selectedMovie={selectedMovie} setModalOpen={isModalOpen} />
+        <PreviewModal selectedMovie={selectedMovie} setIsModalOpen={setIsModalOpen} />
       )}
 
       <CardsGridView fetchUrl={requests.trending} clickHandle={clickHandle} />
