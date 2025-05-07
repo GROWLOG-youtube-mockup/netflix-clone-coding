@@ -6,12 +6,12 @@ import close from '../../assets/close.svg';
 import like from '../../assets/like.svg';
 import play from '../../assets/play.svg';
 import plus from '../../assets/plus.svg';
+import useOnClickOutside from '../../hooks/useOnClickOutside.js';
 
 function PreviewModal({ selectedMovie, setIsModalOpen }) {
   const ref = useRef(null);
 
-  console.log(selectedMovie);
-  console.log(setIsModalOpen);
+  useOnClickOutside(ref, () => setIsModalOpen(false));
 
   return (
     <div className="presentation">
@@ -33,34 +33,37 @@ function PreviewModal({ selectedMovie, setIsModalOpen }) {
               />
               <div className="fade-overlay" />
             </div>
-
-            <div className="preview-button-layout">
-              <button type="button" className="play-button" aria-label="Paly">
-                <img className="icon" src={play} alt="icon" />
-                <span>재생</span>
-              </button>
-              <button type="button" className="has-button" aria-label="Has">
-                <img className="icon" src={plus} alt="icon" />
-              </button>
-              <button type="button" className="like-button" aria-label="like">
-                <img className="icon" src={like} alt="icon" />
-              </button>
+            <div className="preview-player-wrapper">
+              <div className="preview-modal-title">
+                <span>{selectedMovie?.name || selectedMovie?.title}</span>
+              </div>
+              <div className="preview-button-layout">
+                <button type="button" className="play-button" aria-label="Paly">
+                  <img className="icon" src={play} alt="icon" />
+                  <span>재생</span>
+                </button>
+                <button type="button" className="has-button" aria-label="Has">
+                  <img className="icon" src={plus} alt="icon" />
+                </button>
+                <button type="button" className="like-button" aria-label="like">
+                  <img className="icon" src={like} alt="icon" />
+                </button>
+              </div>
             </div>
           </div>
 
           <div className="preview-detail-container">
-            <div className="meta-data">
-              <div>{selectedMovie?.name}</div>
+            <div className="meta-data detail-left">
               <div>{selectedMovie?.overview}</div>
             </div>
-            <div>
+            <div className="meta-data detail-right">
               <div>
-                <span>type</span>
-                <span>{selectedMovie?.media_type}</span>
+                <span className="meta-data-tag-label">type:</span>
+                <span className="meta-data-tag-item">{selectedMovie?.media_type}</span>
               </div>
               <div>
-                <span>평점</span>
-                <span>{selectedMovie?.vote_average}</span>
+                <span className="meta-data-tag-label">평점:</span>
+                <span className="meta-data-tag-item">{selectedMovie?.vote_average}</span>
               </div>
             </div>
           </div>
