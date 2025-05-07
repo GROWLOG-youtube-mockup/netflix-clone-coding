@@ -15,11 +15,11 @@ function MainPage() {
 
   return (
     <div>
-      <CardsGridView fetchUrl={requests.trending} clickHandle={clickHandle} />
-
       {isModalOpen && selectedMovie && (
         <PreviewModal selectedMovie={selectedMovie} setModalOpen={isModalOpen} />
       )}
+
+      <CardsGridView fetchUrl={requests.trending} clickHandle={clickHandle} />
     </div>
   );
 }
