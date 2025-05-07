@@ -2,6 +2,10 @@ import '../../styles/PreviewModal.css';
 
 import React from 'react';
 
+import like from '../../assets/like.svg';
+import play from '../../assets/play.svg';
+import plus from '../../assets/plus.svg';
+
 function PreviewModal({ selectedMovie, setModalOpen }) {
   console.log(selectedMovie);
   console.log(setModalOpen);
@@ -16,12 +20,18 @@ function PreviewModal({ selectedMovie, setModalOpen }) {
               alt="modal__poster-img"
             />
           </div>
+
           <div className="button-layout">
-            <button type="button" className="play-button">
-              PLAY
+            <button type="button" className="square-button play-button" aria-label="Paly">
+              <img src={play} alt="icon" />
+              <span>재생</span>
             </button>
-            <button type="button">HAS</button>
-            <button type="button">LIKE</button>
+            <button type="button" className=" has-button" aria-label="Has">
+              <img src={plus} alt="icon" />
+            </button>
+            <button type="button" className="like-button" aria-label="like">
+              <img src={like} alt="icon" />
+            </button>
           </div>
         </div>
 
