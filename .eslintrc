@@ -72,6 +72,7 @@
           "caseInsensitive": true
         }
       }
-    ]
+    ],
+    "react/prop-types": "off"
   }
 }

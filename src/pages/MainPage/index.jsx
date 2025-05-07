@@ -1,12 +1,14 @@
 import React from 'react';
 
 import Hero from '../../components/Hero.jsx';
+import requests from '../../api/requests.js';
+import CardsGridView from '../../components/CardsGridView.jsx';
 
 function MainPage() {
   return (
     <div>
       <Hero />
-      <h2>MainPage</h2>
+      <CardsGridView fetchUrl={requests.trendingMovies} />
     </div>
   );
 }
