@@ -63,20 +63,12 @@ function Hero() {
             </h1>
             <h3 className="Hero-banner-description">{truncate(movie.overview, 100)}</h3>
             <div className="Hero-banner-button">
-              <Button
-                iconSrc={playIcon}
-                altText="Play"
-                className="Hero_banner-play-button"
-                onClick={() => {}}
-              >
+              <Button alt="Play button" className="Hero_banner-play-button">
+                <img className="play-img" alt="Play" src={playIcon} />
                 재생
               </Button>
-              <Button
-                iconSrc={infoIcon}
-                altText="Info"
-                className="Hero_banner-more-info-button"
-                onClick={() => {}}
-              >
+              <Button alt="Info button" className="Hero_banner-more-info-button">
+                <img className="more-info-img" alt="Info" src={infoIcon} />
                 상세정보
               </Button>
             </div>
