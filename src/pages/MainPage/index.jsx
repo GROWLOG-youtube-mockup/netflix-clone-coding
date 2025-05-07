@@ -22,7 +22,7 @@ function MainPage() {
 
       <CardsGridView fetchUrl={requests.trending} clickHandle={clickHandle} />
       <Hero />
-      <CardsGridView fetchUrl={requests.trendingMovies} />
+      <CardsGridView fetchUrl={requests.trendingMovies} clickHandle={clickHandle} />
     </div>
   );
 }
