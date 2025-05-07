@@ -1,0 +1,85 @@
+.cards-row-title {
+  line-height: 1.3;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  margin-bottom: 0.5em;
+  min-width: 6em;
+  padding-left: var(--card-row-padding-y);
+}
+.slider-container {
+  height: 15vw;
+  position: relative;
+}
+
+.slider-arrow {
+  position: absolute;
+  background-color: rgba(20, 20, 20, 0.5);
+  color: white;
+  border: none;
+  /* font-size: 2.5vw; */
+  font-size: var(--font-size-xl);
+  width: var(--card-row-padding-y);
+  height: 100%;
+  border-radius: 0.2vw;
+  transition: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+.slider-arrow.arrow-left {
+  top: 0;
+  left: 0;
+}
+.slider-arrow.arrow-right {
+  top: 0;
+  right: 0;
+}
+.slider-container:hover .slider-arrow {
+  visibility: visible;
+  transition: 100ms all ease-in-out;
+}
+.arrow-left:hover,
+.arrow-right:hover {
+  font-size: var(--font-size-title);
+}
+
+.slider-posters {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  height: 100%;
+  padding-left: var(--card-row-padding-y);
+}
+.slider-posters::-webkit-scrollbar {
+  display: none;
+}
+.slider-poster img {
+  border-radius: 0.2vw;
+  height: 100%;
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1439px) {
+  .slider-container {
+    height: 20vw;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  .slider-container {
+    height: 25vw;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .slider-container {
+    height: 30vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .slider-container {
+    height: 40vw;
+  }
+}
