@@ -33,6 +33,10 @@ function Header() {
   }, [showSearch]);
 
   const onCategoryClick = (key) => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     navigate(key === 'home' ? '/' : `/genre/${key}`);
   };
 
