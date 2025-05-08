@@ -5,6 +5,7 @@
   padding: 0 4%;
   user-select: none;
   -webkit-user-drag: none;
+  margin-bottom: 1rem;
 }
 
 .social-link, .footer-member > span {
@@ -46,4 +47,9 @@
 
 .footer-member > span:hover {
   border-bottom: 1px solid;
+}
+
+.footer-text {
+  font-size: var(--font-size-xs);
+  line-height: 1.4em;
 }

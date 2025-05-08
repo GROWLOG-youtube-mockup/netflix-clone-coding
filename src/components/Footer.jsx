@@ -15,7 +15,16 @@ function Footer() {
     { name: 'youtube', icon: youtube }
   ];
 
-  const footerMembers = ['강현아', '김유진', '김지은', '박건', '박재경', '이승준', '이혜원'];
+  const footerMembers = [
+    '멤버소개',
+    '강현아',
+    '김유진',
+    '김지은',
+    '박건',
+    '박재경',
+    '이승준',
+    '이혜원'
+  ];
 
   return (
     <div className="footer">
@@ -33,6 +42,21 @@ function Footer() {
             <span>{name}</span>
           </div>
         ))}
+      </div>
+
+      <div className="footer-text">
+        <div>
+          <span>프로젝트 주제: Netflix Clone Coding</span>
+        </div>
+        <div>
+          <span>프로젝트 기간: 2025.05.01 ~ 2025.05</span>
+        </div>
+        <div>
+          <span>Tech Stack: React · CSS3 · Vite</span>
+        </div>
+        <div>
+          <span>팀장: 강현아</span>
+        </div>
       </div>
     </div>
   );
