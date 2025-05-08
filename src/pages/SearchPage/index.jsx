@@ -11,7 +11,7 @@ function SearchPage() {
   return (
     <div className="search-results-container">
       <CardsGridView
-        fetchUrl={`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}`}
+        fetchUrl={`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}`}
       />
     </div>
   );
