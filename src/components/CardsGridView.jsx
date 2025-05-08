@@ -6,13 +6,37 @@ import api from '../api/api.js';
 
 function CardsGridView({ fetchUrl }) {
   const [movies, setMovies] = useState([]);
+  const [tvSeries, setTvSeries] = useState([]);
+  const [people, setPeople] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   async function fetchMovieData() {
     try {
       const request = await api.get(fetchUrl);
-      setMovies(request.data.results);
-      setIsLoaded(true);
+      const { results } = request.data;
+
+      const moviesData = [];
+      const tvSeriesData = [];
+      const peopleData = [];
+
+      results.forEach((item) => {
+        switch (item.media_type) {
+          case 'movie':
+            moviesData.push(item);
+            break;
+          case 'tv':
+            tvSeriesData.push(item);
+            break;
+          case 'person':
+            peopleData.push(item);
+            break;
+          default:
+            break;
+        }
+      });
+      setMovies(moviesData);
+      setTvSeries(tvSeriesData);
+      setPeople(peopleData);
     } catch (error) {
       console.error('검색 실패', error);
     } finally {
@@ -26,7 +50,7 @@ function CardsGridView({ fetchUrl }) {
   if (!isLoaded) {
     return <div className="search-loading-msg">검색 중입니다</div>;
   }
-  if (movies.length === 0) {
+  if (movies.length === 0 && tvSeries.length === 0 && people.length === 0) {
     return (
       <div className="search-novalue-msg">
         <div>입력하신 검색어와 일치하는 결과가 없습니다.</div>
@@ -43,6 +67,7 @@ function CardsGridView({ fetchUrl }) {
   return (
     <section className="cards-grid">
       <div className="grid-container">
+        {/* 영화 검색되는 경우 */}
         {movies.map((movie, index) => (
           <div key={movie.id} className={`grid-poster poster-${index}`}>
             <img
@@ -51,6 +76,29 @@ function CardsGridView({ fetchUrl }) {
             />
           </div>
         ))}
+
+        {/* tvSeries 검색되는 경우 */}
+        {tvSeries.map((tv, index) => (
+          <div key={tv.id} className={`grid-poster poster-${index}`}>
+            <img src={`https://image.tmdb.org/t/p/original${tv.poster_path}`} alt={tv.title} />
+          </div>
+        ))}
+
+        {/* 사람이 검색되는 경우, 대표작(known_for)의 이미지 보여짐 */}
+        {people.map((person, index) => {
+          const knwonForWithPoster = person.known_for?.find((item) => item.poster_path);
+
+          if (!knwonForWithPoster) return null;
+
+          return (
+            <div key={person.id} className={`grid-poster poster-${index}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/original${knwonForWithPoster.poster_path}`}
+                alt={knwonForWithPoster.title}
+              />
+            </div>
+          );
+        })}
       </div>
     </section>
   );
