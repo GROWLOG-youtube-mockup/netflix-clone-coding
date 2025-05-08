@@ -38,7 +38,7 @@ function PreviewModal({ selectedMovie, setIsModalOpen }) {
                 <span>{selectedMovie?.name || selectedMovie?.title}</span>
               </div>
               <div className="preview-button-layout">
-                <button type="button" className="play-button" aria-label="Paly">
+                <button type="button" className="play-button" aria-label="Play">
                   <img className="icon" src={play} alt="icon" />
                   <span>재생</span>
                 </button>
