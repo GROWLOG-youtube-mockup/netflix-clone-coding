@@ -1,4 +1,4 @@
-import '../styles/Header.css';
+import '../styles/SubHeader.css';
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
@@ -38,7 +38,7 @@ function SubHeader() {
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
   return (
-    <div className={`sub-header ${show ? 'main-header_black' : ''}`}>
+    <div className={`sub-header ${show ? 'sub-header_black' : ''}`}>
       <div className="sub-header-genre-details">
         <span className="sub-header-genre-title">{current.title}</span>
         <button type="button" className="sub-header-genre-label" onClick={toggleDropdown}>
