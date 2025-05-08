@@ -8,6 +8,7 @@
   font-weight: normal;
   src: url('../../public/NetflixSans-Regular.otf');
 }
+
 :root {
   --headerHeight: 60px;
   --inHeaderHeight: 30px;
@@ -46,6 +47,7 @@
   height: var(--inHeaderHeight);
   width: 10%;
 }
+
 .main-header-left-logo {
   height: var(--inHeaderHeight);
 }
@@ -56,6 +58,7 @@
   height: var(--inHeaderHeight);
   width: 80%;
 }
+
 .main-header-category-button {
   margin: 0 10px;
   background: transparent;
@@ -65,6 +68,7 @@
   font-size: 1em;
   cursor: pointer;
 }
+
 .main-header-category-button.active {
   font-weight: 700;
 }
@@ -76,6 +80,7 @@
   height: var(--inHeaderHeight);
   width: 10%;
 }
+
 .main-header-search-button {
   background: transparent;
   border: none;
@@ -83,6 +88,7 @@
   margin: 0 var(--iconsMargin);
   height: var(--iconsHeight);
 }
+
 .main-header-right-search-icon,
 .main-header-right-notification,
 .main-header-right-profile,
@@ -93,6 +99,7 @@
   margin: 0 var(--iconsMargin);
   height: var(--iconsHeight);
 }
+
 .main-header-right-profile {
   height: 30px;
   border-radius: 3px;
@@ -107,10 +114,12 @@
   border: 1px solid #fff;
   border-radius: 4px;
 }
+
 .search-input-icon {
   height: var(--iconsHeight);
   margin-right: 8px;
 }
+
 .main-header-search-input {
   flex: 1;
   background: transparent;
@@ -119,6 +128,7 @@
   font-size: 14px;
   outline: none;
 }
+
 .main-header-search-input::placeholder {
   color: #aaa;
 }

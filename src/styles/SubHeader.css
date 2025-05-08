@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
 }
+
 .sub-header-genre-title {
   color: #fff;
   font-family: 'Netflix Sans', Helvetica;
@@ -28,6 +29,7 @@
   font-size: 2.4rem;
   margin-right: 20px;
 }
+
 .sub-header-genre-label {
   position: relative;
   display: flex;
@@ -43,9 +45,11 @@
   font-size: 0.7em;
   cursor: pointer;
 }
+
 .sub-header-genre-label:hover {
   background-color: #343434;
 }
+
 .sub-header-genre-label-triangleDown {
   height: 10px;
 }
@@ -68,6 +72,7 @@
 .genre-option-item {
   list-style: none;
 }
+
 .genre-option-button {
   display: block;
   background: transparent;
@@ -80,6 +85,7 @@
   white-space: nowrap;
   cursor: pointer;
 }
+
 .genre-option-button:hover,
 .genre-option-button.active {
   text-decoration: underline;
@@ -89,6 +95,7 @@
   display: flex;
   align-items: center;
 }
+
 .sub-header-show-video-row {
   display: flex;
   align-items: center;
@@ -99,6 +106,7 @@
   border: 1px solid #fff;
   cursor: pointer;
 }
+
 .sub-header-show-video-grid {
   display: flex;
   align-items: center;
@@ -109,13 +117,11 @@
   border: 1px solid #fff;
   cursor: pointer;
 }
+
 .row-photo {
   height: 15px;
 }
+
 .grid-photo {
   height: 15px;
-}
-
-.sub-header.main-header_black {
-  background-color: #141414;
 }
