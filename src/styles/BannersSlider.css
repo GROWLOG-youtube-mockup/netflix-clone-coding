@@ -4,7 +4,7 @@
   font-weight: var(--font-weight-regular);
   margin-bottom: 0.5em;
   min-width: 6em;
-  padding-left: var(--card-row-padding-y);
+  padding-left: var(--banner-row-padding-y);
 }
 
 .banner-slider-container {
@@ -19,7 +19,7 @@
   color: white;
   border: none;
   font-size: var(--font-size-xl);
-  width: var(--card-row-padding-y);
+  width: var(--banner-row-padding-y);
   height: 100%;
   border-radius: 0.2vw;
   transition: none;
@@ -53,7 +53,7 @@
   overflow-x: scroll;
   scroll-behavior: smooth;
   height: 100%;
-  padding-left: var(--card-row-padding-y);
+  padding-left: var(--banner-row-padding-y);
 }
 
 .banner-slider-content::-webkit-scrollbar {

@@ -28,7 +28,7 @@
 .Hero-banner-contents {
   position: absolute;
   bottom: 20%; /* 하단에서부터 20% 위쪽 위치 */
-  margin-left: 30px;
+  margin-left: var(--card-row-padding-y);
   height: 190px;
   z-index: 1;
   display: flex;
