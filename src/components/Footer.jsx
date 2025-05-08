@@ -6,7 +6,6 @@ import facebook from '../assets/facebook.svg';
 import instagram from '../assets/instagram.svg';
 import twitter from '../assets/twitter.svg';
 import youtube from '../assets/youtube.svg';
-import Button from './Common/Button.jsx';
 
 function Footer() {
   const socialLinks = [
