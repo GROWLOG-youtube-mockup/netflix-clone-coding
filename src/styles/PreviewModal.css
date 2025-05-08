@@ -58,6 +58,14 @@
   line-height: 1.5rem;
 }
 
+.detail-left {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 /* 플레이어 버튼 레이아웃 */
 .preview-player-wrapper {
   position: absolute;
