@@ -8,7 +8,7 @@
   margin-bottom: 1rem;
 }
 
-.social-link, .footer-member > span {
+.social-link, .footer-member > span, .footer-link-button {
   cursor: pointer;
 }
 
@@ -47,6 +47,18 @@
 
 .footer-member > span:hover {
   border-bottom: 1px solid;
+}
+
+.footer-link-button {
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding: .5em;
+  background: transparent;
+  border: 1px solid grey;
+  color: grey;
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding: .5em;
 }
 
 .footer-text {

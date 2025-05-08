@@ -6,6 +6,7 @@ import facebook from '../assets/facebook.svg';
 import instagram from '../assets/instagram.svg';
 import twitter from '../assets/twitter.svg';
 import youtube from '../assets/youtube.svg';
+import Button from './Common/Button.jsx';
 
 function Footer() {
   const socialLinks = [
@@ -42,6 +43,16 @@ function Footer() {
             <span>{name}</span>
           </div>
         ))}
+      </div>
+
+      <div className="footer-service">
+        <button
+          type="button"
+          className="footer-link-button"
+          onClick={() => window.open('https://www.netflix.com', '_blank')}
+        >
+          넷플릭스 이동
+        </button>
       </div>
 
       <div className="footer-text">
