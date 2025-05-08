@@ -24,7 +24,7 @@ function CardsGridView({ fetchUrl }) {
   }, [fetchUrl]);
 
   if (!isLoaded) {
-    return <div className="search-loding-msg">검색 중입니다</div>;
+    return <div className="search-loading-msg">검색 중입니다</div>;
   }
   if (movies.length === 0) {
     return (
