@@ -1,28 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import requests from '../../api/requests.js';
 import CardsGridView from '../../components/CardsGridView.jsx';
 import Hero from '../../components/Hero.jsx';
-import PreviewModal from '../../components/PreviewModal/PreviewModal.jsx';
 
 function MainPage() {
-  const [selectedMovie, setSelectedMovie] = useState();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const clickHandle = (movie) => {
-    setSelectedMovie(movie);
-    setIsModalOpen(true);
-  };
-
   return (
     <div>
-      {isModalOpen && selectedMovie && (
-        <PreviewModal selectedMovie={selectedMovie} setIsModalOpen={setIsModalOpen} />
-      )}
-
-      <CardsGridView fetchUrl={requests.trending} clickHandle={clickHandle} />
       <Hero />
-      <CardsGridView fetchUrl={requests.trendingMovies} clickHandle={clickHandle} />
+      <CardsGridView fetchUrl={requests.trendingMovies} />
     </div>
   );
 }
