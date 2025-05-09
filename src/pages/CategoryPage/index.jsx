@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { categoryConfig } from '../../api/categoryConfig.js';
 import requests from '../../api/requests.js';
+import BannersSlider from '../../components/BannersSlider.jsx';
 import CardsGridView from '../../components/CardsGridView.jsx';
-import CardsSlider from '../../components/CardsSlider.jsx';
 import Hero from '../../components/Hero.jsx';
 import SubHeader from '../../components/SubHeader.jsx';
 
@@ -24,7 +24,7 @@ function CategoryPage() {
         <div>
           <Hero />
           {categoryRequest.subGenres.map((sub) => (
-            <CardsSlider title={sub.title} fetchUrl={requests[sub.requestKey]} key={sub.key} />
+            <BannersSlider title={sub.title} fetchUrl={requests[sub.requestKey]} key={sub.key} />
           ))}
         </div>
       )}
