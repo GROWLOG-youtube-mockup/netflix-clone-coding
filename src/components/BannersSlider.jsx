@@ -7,6 +7,8 @@ function BannersSlider({ title, fetchUrl, clickHandle }) {
   const [contents, setContents] = useState([]);
   const sliderRef = useRef(null);
 
+  const SCROLL_OFFSET = window.innerWidth - 80;
+
   const fetchContentData = async () => {
     try {
       const response = await api.get(fetchUrl);
@@ -21,13 +23,13 @@ function BannersSlider({ title, fetchUrl, clickHandle }) {
     fetchContentData();
   }, [fetchUrl]);
 
-  function handleClickArrow(dir) {
+  const handleClickArrow = (direction) => {
     const slider = sliderRef.current;
-    slider.scrollLeft =
-      dir === 'left'
-        ? slider.scrollLeft - (window.innerWidth - 80)
-        : slider.scrollLeft + (window.innerWidth - 80);
-  }
+    const newScrollLeft =
+      direction === 'left' ? slider.scrollLeft - SCROLL_OFFSET : slider.scrollLeft + SCROLL_OFFSET;
+
+    slider.scrollLeft = newScrollLeft;
+  };
 
   return (
     <section className="banners-row">
