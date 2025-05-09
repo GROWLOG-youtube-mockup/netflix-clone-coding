@@ -52,14 +52,13 @@ function BannersSlider({ title, fetchUrl, clickHandle }) {
   /**
    * 개별 배너 아이템을 렌더링하는 함수
    * @param {object} content - 컨텐츠 정보 객체
-   * @param {number} index - 배열 내 인덱스
    * @returns {JSX.Element} 배너 아이템 컴포넌트
    */
-  const renderBannerItem = (content, index) => (
+  const renderBannerItem = (content) => (
     <button
       type="button"
       key={content.id}
-      className={`banner-item banner-${index}`}
+      className="banner-item"
       onClick={() => clickHandle(content)}
     >
       <img
