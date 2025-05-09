@@ -36,13 +36,6 @@ function Header() {
     navigate(key === 'home' ? '/' : `/genre/${key}`);
   };
 
-  const handleSearch = (e) => {
-    setTimeout(() => {
-      if (e.target.value === '') navigate('/');
-      else navigate(`/search?keyword=${e.target.value}`);
-    }, 500);
-  };
-
   return (
     <div className="header-contents">
       <header className={`main-header ${show ? 'main-header_black' : ''}`}>
@@ -85,7 +78,6 @@ function Header() {
                 className="main-header-search-input"
                 placeholder="제목, 사람, 장르"
                 onBlur={() => setShowSearch(false)}
-                onKeyDown={(e) => handleSearch(e)}
               />
             </div>
           )}

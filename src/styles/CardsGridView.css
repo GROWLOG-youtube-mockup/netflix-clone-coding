@@ -15,13 +15,6 @@
   border-radius: 0.2vw;
 }
 
-.search-loading-msg,
-.search-novalue-msg {
-  font-size: 0.8rem;
-  padding-top: 15vh;
-  padding-left: 35vw;
-}
-
 @media screen and (min-width: 1280px) and (max-width: 1439px) {
   .grid-container {
     grid-template-columns: repeat(6, 1fr);
