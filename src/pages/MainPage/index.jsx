@@ -6,7 +6,6 @@ import Hero from '../../components/Hero.jsx';
 import PreviewModal from '../../components/PreviewModal/PreviewModal.jsx';
 
 function MainPage() {
-
   const [selectedMovie, setSelectedMovie] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -36,7 +35,12 @@ function MainPage() {
       )}
       <Hero />
       {bannerConfig.map((config) => (
-        <BannersSlider key={config.id} title={config.title} fetchUrl={config.fetchUrl} clickHandle={clickHandle}/>
+        <BannersSlider
+          key={config.id}
+          title={config.title}
+          fetchUrl={config.fetchUrl}
+          clickHandle={clickHandle}
+        />
       ))}
     </div>
   );
