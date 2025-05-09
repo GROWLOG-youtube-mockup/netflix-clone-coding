@@ -1,0 +1,127 @@
+.sub-header {
+  position: fixed;
+  top: var(--headerHeight);
+  left: 0;
+  width: 100%;
+  height: 37px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px var(--card-row-padding-y);
+  background: transparent;
+  transition: background 0.5s;
+  z-index: 100;
+}
+
+.sub-header_black {
+  background-color: #141414;
+}
+
+.sub-header-genre-details {
+  display: flex;
+  align-items: center;
+}
+
+.sub-header-genre-title {
+  color: #fff;
+  font-family: 'Netflix Sans', Helvetica;
+  font-weight: normal;
+  font-size: 2.4rem;
+  margin-right: 20px;
+}
+
+.sub-header-genre-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80px;
+  height: var(--sub-header-label-height);
+  padding: 0 10px;
+  background: #141414;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: 'Netflix Sans', Helvetica;
+  font-size: 0.7em;
+  cursor: pointer;
+}
+
+.sub-header-genre-label:hover {
+  background-color: #343434;
+}
+
+.sub-header-genre-label-triangleDown {
+  height: 10px;
+}
+
+/* 드롭다운 (버튼 내부 요소) */
+.genre-options-dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 8px 24px;
+  margin: 0;
+  padding: 12px;
+  background: rgba(20, 20, 20, 0.9);
+  border: none;
+  z-index: 200;
+}
+
+.genre-option-item {
+  list-style: none;
+}
+
+.genre-option-button {
+  display: block;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: 'Netflix Sans', Helvetica;
+  font-size: 0.9em;
+  text-align: left;
+  padding: 4px 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.genre-option-button:hover,
+.genre-option-button.active {
+  text-decoration: underline;
+}
+
+.sub-header-show-video-list-type {
+  display: flex;
+  align-items: center;
+}
+
+.sub-header-show-video-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.sub-header-show-video-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.row-photo {
+  height: 15px;
+}
+
+.grid-photo {
+  height: 15px;
+}
