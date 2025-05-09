@@ -31,6 +31,8 @@ function CardsGridView({ fetchUrl, clickHandle }) {
             peopleData.push(item);
             break;
           default:
+            // moviesData.push(item);
+            tvSeriesData.push(item);
             break;
         }
       });
