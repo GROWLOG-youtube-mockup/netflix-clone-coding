@@ -66,6 +66,8 @@
   padding-top: calc(16% * 9 / 16); /* 16:9 비율 유지 */
   height: 0;
   margin-right: 0.3%; /* 배너 간 간격 조정 */
+  border: none;
+  cursor: pointer;
 }
 
 .banner-item img {
