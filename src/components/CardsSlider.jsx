@@ -7,7 +7,6 @@ import api from '../api/api.js';
 function CardsSlider({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
   const sliderRef = useRef(null);
-
   async function fetchMovieData() {
     const request = await api.get(fetchUrl);
     setMovies(request.data.results);

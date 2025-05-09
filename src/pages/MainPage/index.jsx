@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import requests from '../../api/requests.js';
 import BannersSlider from '../../components/BannersSlider.jsx';
 import Hero from '../../components/Hero.jsx';
+import PreviewModal from '../../components/PreviewModal/PreviewModal.jsx';
 
 function MainPage() {
+  const [selectedMovie, setSelectedMovie] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const clickHandle = (movie) => {
+    setSelectedMovie(movie);
+    setIsModalOpen(true);
+  };
+
   return (
     <div>
+      {isModalOpen && selectedMovie && (
+        <PreviewModal selectedMovie={selectedMovie} setIsModalOpen={setIsModalOpen} />
+      )}
+
+      <CardsGridView fetchUrl={requests.trending} clickHandle={clickHandle} />
       <Hero />
       <BannersSlider title="TOP 10 시리즈" fetchUrl={requests.top10Series} />
       <BannersSlider title="지금 뜨는 콘텐츠" fetchUrl={requests.trendingAll} />
@@ -19,6 +33,7 @@ function MainPage() {
       <BannersSlider title="드라마" fetchUrl={requests.dramaSeries} />
       <BannersSlider title="범죄 영화" fetchUrl={requests.crimeMovies} />
       <BannersSlider title="가족 영화" fetchUrl={requests.familyContent} />
+
     </div>
   );
 }
