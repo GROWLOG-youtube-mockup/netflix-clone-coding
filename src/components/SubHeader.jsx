@@ -1,19 +1,17 @@
 import '../styles/Header.css';
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { categoryConfig } from '../api/categoryConfig.js';
 import gridToggle from '../assets/grid-toggle.svg';
 import rowToggle from '../assets/row-toggle.svg';
 import triangleDown from '../assets/triangledown_106509.svg';
 
-function SubHeader() {
+function SubHeader({ setView, selectedCategory }) {
   const navigate = useNavigate();
-  const { genreId } = useParams();
   const { search } = useLocation();
   const searchParams = new URLSearchParams(search);
-  const selectedCategory = genreId || 'home';
   const subKey = searchParams.get('sub');
 
   const [show, setShow] = useState(false);
@@ -63,10 +61,14 @@ function SubHeader() {
       </div>
 
       <div className="sub-header-show-video-list-type">
-        <button type="button" className="sub-header-show-video-row">
+        <button type="button" className="sub-header-show-video-row" onClick={() => setView('row')}>
           <img className="row-photo" alt="row" src={rowToggle} />
         </button>
-        <button type="button" className="sub-header-show-video-grid">
+        <button
+          type="button"
+          className="sub-header-show-video-grid"
+          onClick={() => setView('grid')}
+        >
           <img className="grid-photo" alt="grid" src={gridToggle} />
         </button>
       </div>
