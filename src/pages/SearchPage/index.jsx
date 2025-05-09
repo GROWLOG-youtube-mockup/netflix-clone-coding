@@ -1,18 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import api from '../../api/api.js';
 import CardsGridView from '../../components/CardsGridView.jsx';
+
 import '../../styles/SearchPage.css';
 
 function SearchPage() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('keyword');
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const fetchUrl = `https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}`;
+
+  async function fetchMovieData() {
+    try {
+      const request = await api.get(fetchUrl);
+      setSearchResults(request.data.results);
+    } catch (error) {
+      console.error('searchpage error', error);
+    } finally {
+      setIsLoaded(true);
+    }
+  }
+
+  useEffect(() => {
+    fetchMovieData();
+  }, [fetchUrl]);
+
+  if (!isLoaded) {
+    return <div className="search-loading-msg">검색 중입니다</div>;
+  }
+  if (isLoaded && searchResults.length === 0) {
+    return (
+      <div className="search-novalue-msg">
+        <div>입력하신 검색어와 일치하는 결과가 없습니다.</div>
+        <br />
+        <ul>
+          <li>다른 키워드를 입력해 보세요.</li>
+          <li>시리즈나 영화를 찾고 있으신가요?</li>
+          <li>영화 제목, 시리즈 제목, 또는 배우나 감독의 이름으로 검색해 보세요.</li>
+          <li>코미디, 로맨스, 스포츠 또는 드라마와 같은 장르명으로 검색해 보세요.</li>
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <div className="search-results-container">
-      <CardsGridView
-        fetchUrl={`https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(query)}`}
-      />
+      <CardsGridView fetchUrl={fetchUrl} />
     </div>
   );
 }
