@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import requests from '../../api/requests.js';
 import BannersSlider from '../../components/BannersSlider.jsx';
 import Hero from '../../components/Hero.jsx';
+import PreviewModal from '../../components/PreviewModal/PreviewModal.jsx';
 
 function MainPage() {
+
+  const [selectedMovie, setSelectedMovie] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const clickHandle = (movie) => {
+    setSelectedMovie(movie);
+    setIsModalOpen(true);
+  };
+
   const bannerConfig = [
     { id: 'top10', title: 'TOP 10 시리즈', fetchUrl: requests.top10Series },
     { id: 'trending', title: '지금 뜨는 콘텐츠', fetchUrl: requests.trendingAll },
@@ -21,9 +31,12 @@ function MainPage() {
 
   return (
     <div>
+      {isModalOpen && selectedMovie && (
+        <PreviewModal selectedMovie={selectedMovie} setIsModalOpen={setIsModalOpen} />
+      )}
       <Hero />
       {bannerConfig.map((config) => (
-        <BannersSlider key={config.id} title={config.title} fetchUrl={config.fetchUrl} />
+        <BannersSlider key={config.id} title={config.title} fetchUrl={config.fetchUrl} clickHandle={clickHandle}/>
       ))}
     </div>
   );
