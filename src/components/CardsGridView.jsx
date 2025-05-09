@@ -20,6 +20,7 @@ function CardsGridView({ fetchUrl, clickHandle }) {
   return (
     <section className="cards-grid">
       <div className="grid-container">
+        {/* 영화 검색되는 경우 */}
         {movies?.map((movie, index) => (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <div
