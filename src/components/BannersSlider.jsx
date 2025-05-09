@@ -7,11 +7,15 @@ function BannersSlider({ title, fetchUrl, clickHandle }) {
   const [contents, setContents] = useState([]);
   const sliderRef = useRef(null);
 
-  async function fetchContentData() {
-    const request = await api.get(fetchUrl);
-    setContents(request.data.results.filter((content) => content.backdrop_path));
-    return request;
-  }
+  const fetchContentData = async () => {
+    try {
+      const response = await api.get(fetchUrl);
+      const filteredContents = response.data.results.filter((content) => content.backdrop_path);
+      setContents(filteredContents);
+    } catch (error) {
+      console.error('Error fetching content:', error);
+    }
+  };
 
   useEffect(() => {
     fetchContentData();
