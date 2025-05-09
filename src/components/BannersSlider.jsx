@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import api from '../api/api.js';
 
-function BannersSlider({ title, fetchUrl }) {
+function BannersSlider({ title, fetchUrl, clickHandle }) {
   const [contents, setContents] = useState([]);
   const sliderRef = useRef(null);
 
@@ -38,7 +38,12 @@ function BannersSlider({ title, fetchUrl }) {
         </button>
         <div className="banner-slider-content" ref={sliderRef}>
           {contents.map((content, index) => (
-            <div key={content.id} className={`banner-item banner-${index}`}>
+            <button
+              type="button"
+              key={content.id}
+              className={`banner-item banner-${index}`}
+              onClick={() => clickHandle(content)}
+            >
               <img
                 src={`https://image.tmdb.org/t/p/original${content.backdrop_path}`}
                 alt={content.title || content.name}
@@ -46,7 +51,7 @@ function BannersSlider({ title, fetchUrl }) {
               <div className="banner-info">
                 <h3>{content.title || content.name}</h3>
               </div>
-            </div>
+            </button>
           ))}
         </div>
         <button
