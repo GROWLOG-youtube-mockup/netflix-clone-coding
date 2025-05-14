@@ -1,0 +1,124 @@
+.banners-row-title {
+  line-height: 1.3;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  margin-bottom: 0.5em;
+  min-width: 6em;
+  padding-left: var(--banner-row-padding-y);
+}
+
+.banner-slider-container {
+  position: relative;
+  padding-top: 0.1%;
+  padding-bottom: 3%;
+}
+
+.banner-slider-arrow {
+  position: absolute;
+  background-color: rgba(20, 20, 20, 0.5);
+  color: white;
+  border: none;
+  font-size: var(--font-size-xl);
+  width: var(--banner-row-padding-y);
+  height: 100%;
+  border-radius: 0.2vw;
+  transition: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  z-index: 10;
+}
+
+.banner-slider-arrow.arrow-left {
+  top: 0;
+  left: 0;
+}
+
+.banner-slider-arrow.arrow-right {
+  top: 0;
+  right: 0;
+}
+
+.banner-slider-container:hover .banner-slider-arrow {
+  visibility: visible;
+  transition: 100ms all ease-in-out;
+}
+
+.banner-slider-content {
+  display: flex;
+  flex-direction: row;
+  gap: 0.1vw;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  height: 100%;
+  padding-left: var(--banner-row-padding-y);
+}
+
+.banner-slider-content::-webkit-scrollbar {
+  display: none;
+}
+
+.banner-item {
+  position: relative;
+  flex: 0 0 16%; /* 약 6개가 보이도록 조정 */
+  padding-top: calc(16% * 9 / 16); /* 16:9 비율 유지 */
+  height: 0;
+  margin-right: 0.3%; /* 배너 간 간격 조정 */
+  border: none;
+  cursor: pointer;
+}
+
+.banner-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.2vw;
+}
+
+.banner-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  color: white;
+}
+
+.banner-info h3 {
+  font-size: 1em;
+  text-align: center;
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1439px) {
+  .banner-item {
+    flex: 0 0 18%;
+    padding-top: calc(18% * 9 / 16);
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  .banner-item {
+    flex: 0 0 20%;
+    padding-top: calc(20% * 9 / 16);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .banner-item {
+    flex: 0 0 25%;
+    padding-top: calc(25% * 9 / 16);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .banner-item {
+    flex: 0 0 33%;
+    padding-top: calc(33% * 9 / 16);
+  }
+}

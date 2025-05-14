@@ -1,0 +1,137 @@
+@font-face {
+  font-family: 'Netflix Sans';
+  font-weight: bold;
+  src: url('../../public/NetflixSans-Bold.otf');
+}
+@font-face {
+  font-family: 'Netflix Sans';
+  font-weight: normal;
+  src: url('../../public/NetflixSans-Regular.otf');
+}
+
+:root {
+  --headerHeight: 60px;
+  --inHeaderHeight: 30px;
+  --iconsHeight: 20px;
+  --iconsMargin: 10px;
+  --sub-header-label-height: 20px;
+}
+
+.header-contents {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--headerHeight);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--card-row-padding-y);
+  background: linear-gradient(to bottom, rgba(20, 20, 20, 0.8), rgba(20, 20, 20, 0));
+  transition: background 0.5s;
+  z-index: 100;
+}
+
+.main-header_black {
+  background-color: #141414;
+}
+
+.main-header-left {
+  display: flex;
+  align-items: center;
+  height: var(--inHeaderHeight);
+  min-width: 92px; /* 로고의 최소 너비 설정 */
+  margin-right: 20px; /* 로고와 카테고리 사이 간격 */
+}
+
+.main-header-left-logo {
+  height: var(--inHeaderHeight);
+}
+
+.main-header-category {
+  display: flex;
+  align-items: center;
+  height: var(--inHeaderHeight);
+  flex: 1; /* 남은 공간을 최대한 활용 */
+  min-width: 0; /* flex item이 너무 작아지는 것 방지 */
+}
+
+.main-header-category-button {
+  margin: 0 10px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: 'Netflix Sans', Helvetica;
+  font-size: 1em;
+  cursor: pointer;
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+.main-header-category-button.active {
+  font-weight: 700;
+}
+
+.main-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: var(--inHeaderHeight);
+  min-width: 180px; /* 우측 영역 최소 너비 설정 */
+}
+
+.main-header-search-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 var(--iconsMargin);
+  height: var(--iconsHeight);
+}
+
+.main-header-right-search-icon,
+.main-header-right-notification,
+.main-header-right-profile,
+.main-header-right-triangleDown {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 var(--iconsMargin);
+  height: var(--iconsHeight);
+}
+
+.main-header-right-profile {
+  height: 30px;
+  border-radius: 3px;
+}
+
+.main-header-search-container {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  margin-left: 16px;
+  background: #141414;
+  border: 1px solid #fff;
+  border-radius: 4px;
+}
+
+.search-input-icon {
+  height: var(--iconsHeight);
+  margin-right: 8px;
+}
+
+.main-header-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  min-width: 120px; /* 검색창 최소 너비 설정 */
+}
+
+.main-header-search-input::placeholder {
+  color: #aaa;
+}
