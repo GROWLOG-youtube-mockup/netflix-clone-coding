@@ -7,25 +7,25 @@ import instagram from '../assets/instagram.svg';
 import twitter from '../assets/twitter.svg';
 import youtube from '../assets/youtube.svg';
 
+const socialLinks = [
+  { name: 'facebook', icon: facebook },
+  { name: 'instagram', icon: instagram },
+  { name: 'twitter', icon: twitter },
+  { name: 'youtube', icon: youtube }
+];
+
+const footerMembers = [
+  '멤버소개',
+  '강현아',
+  '김유진',
+  '김지은',
+  '박건',
+  '박재경',
+  '이승준',
+  '이혜원'
+];
+
 function Footer() {
-  const socialLinks = [
-    { name: 'facebook', icon: facebook },
-    { name: 'instagram', icon: instagram },
-    { name: 'twitter', icon: twitter },
-    { name: 'youtube', icon: youtube }
-  ];
-
-  const footerMembers = [
-    '멤버소개',
-    '강현아',
-    '김유진',
-    '김지은',
-    '박건',
-    '박재경',
-    '이승준',
-    '이혜원'
-  ];
-
   return (
     <div className="footer">
       <div className="social-links">
